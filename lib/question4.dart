@@ -1,5 +1,5 @@
 void main() {
-  Map<String, int?> Number = {
+  Map<String, int?> number = {
     "one": 1,
     "two": 2,
     "three": 3,
@@ -10,6 +10,6 @@ void main() {
     "eight": 8
   };
 
-  Number.removeWhere((key, value) => value == null);
-  print(Number.keys);
+  number.removeWhere((key, value) => value == null);
+  print(number.keys.join(","));
 }

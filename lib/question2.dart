@@ -11,11 +11,13 @@ void main() {
     "nine": 12000,
     "ten": 10000
   };
-  var total = 0;
-  for (var num in numberMap.values) {
-    if (num >= 10000) {
-      total += num;
-    }
-  }
+  // var total = 0;
+  // for (var num in numberMap.values) {
+  //   if (num >= 10000) {
+  //     total += num;
+  //   }
+  // }
+  // print(total);
+  var total=numberMap.values.where((value) => value>=10000).reduce((firstValue, secondValue) => firstValue+secondValue);
   print(total);
 }

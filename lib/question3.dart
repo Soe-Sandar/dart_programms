@@ -5,50 +5,40 @@ void main() {
   print("Enter you email");
   String? email = stdin.readLineSync()!;
   bool checkedEmail = emailVerification(email);
-  if(checkedEmail==true){
+  if (checkedEmail == true) {
     print("Validation Success");
-  }else{
+  } else {
     print("Validation fail");
   }
-
 
   print("Enter your phone number");
-  int? phoneNumber = int.parse(stdin.readLineSync()!);
-  bool checkedPhoneNumber=phoneNumberValidation(phoneNumber);
-  if(checkedPhoneNumber==true){
+  String? phoneNumber = stdin.readLineSync()!;
+  bool checkedPhoneNumber = phoneNumberValidation(phoneNumber);
+  if (checkedPhoneNumber == true) {
     print("Validation Success");
-  }else{
+  } else {
     print("Validation fail");
   }
-  
 }
 
-bool emailVerification(String email){
-  List<String> temp=email.split('@gmail.com');
-  //temp.remove(temp.last);
-  if(temp[0]==[0-9]  || temp[0]=='' || temp.last!=''){
+bool emailVerification(String email) {
+
+  if (email.startsWith("@gmail.com") || !email.endsWith("@gmail.com")) {
     return false;
-  }else{
+  } else {
     return true;
   }
-
 }
 
-bool phoneNumberValidation(int phoneNumber){
-  var temp = phoneNumber.toString();
-  //List<int> phoneNumberList = temp.split('').map(int.parse).toList();
-  List<String> phoneNumberList = temp.split('');
-  if(phoneNumberList[0]=="9" && phoneNumberList[1]=="5" && phoneNumberList[2]=="9"){
-    phoneNumberList.remove(phoneNumberList[0]);
-    phoneNumberList.remove(phoneNumberList[1]);
-    phoneNumberList[0]="+959";
-  }else if (phoneNumberList[0]=="9") {
-    phoneNumberList[0]="+959";
+bool phoneNumberValidation(String phoneNumber) {
+
+  if (phoneNumber.startsWith("09")) {
+    phoneNumber=phoneNumber.replaceFirst("09", "+959");
+    //print(phoneNumber);
   }
-  //print(phoneNumberList);
-  if (phoneNumberList.length >= 10 && phoneNumberList[0] == "+959") {
+  if (phoneNumber.startsWith("+959") && phoneNumber.length >= 10) {
     return true;
-  } else {
+  }else {
     return false;
   }
 }
